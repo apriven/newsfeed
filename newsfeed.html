@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="CSS/feed.css"/>
+    <title>🎥🍿</title>
+</head>
+
+<body>
+    <h3>🎥PopCorn Feed🍿</h3>
+    <div id="root"></div>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:7002/getall",
+        }).done(function (data) {
+            // $("#root").append($("<ul/>"));
+            var news = JSON.parse(data);
+            news.forEach(function (element) {
+                var root = element.title;
+                var link = element.link
+                $("#root").append($("<div class = 'box'>").html(`<a href = "${link}" target="_blank">${root}</a>`));
+            });
+        });
+    </script>
+</body>
+
+</html>
